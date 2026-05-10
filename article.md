@@ -1,99 +1,61 @@
+---
+author: "Kyle Jones"
+date_published: "July 17, 2025"
+date_exported_from_medium: "November 10, 2025"
+canonical_link: "https://medium.com/@kyle-t-jones/predicting-pipeline-burst-conditions-using-machine-learning-on-opensees-simulation-data-pvt-6e0edc8a9caa"
+---
+
 # Predicting Pipeline Burst Conditions Using Machine Learning on OpenSees Simulation Data (PVT) Physical pipelines can burst due to internal pressure. The conditions of
 bursting can be studied in advance using simulation. This project...
 
 ### Predicting Pipeline Burst Conditions Using Machine Learning on OpenSees Simulation Data (PVT)
-Physical pipelines can burst due to internal pressure. The conditions of
-bursting can be studied in advance using simulation. This project takes
-a simulated dataset of pipe response under temperature and pressure
-variations, and trains machine learning models to predict burst
-outcomes.
+Physical pipelines can burst due to internal pressure. The conditions of bursting can be studied in advance using simulation. This project takes a simulated dataset of pipe response under temperature and pressure variations, and trains machine learning models to predict burst outcomes.
 
-We used a dataset manually generated in
-[OpenSees](https://opensees.berkeley.edu/) and shared on
-[Kaggle](https://www.kaggle.com/code/ayomidezulkazeem/opensees-data-gen/input). This article shows how to turn that
-dataset into a working classification system to predict pipe burst
-conditions.
+We used a dataset manually generated in [OpenSees](https://opensees.berkeley.edu/) and shared on [Kaggle](https://www.kaggle.com/code/ayomidezulkazeem/opensees-data-gen/input). This article shows how to turn that dataset into a working classification system to predict pipe burst conditions.
 
 ### The Business Case
-Pipeline operators face constant risk from aging infrastructure,
-shifting soil, and uncertain environmental conditions. Predicting burst
-conditions is essential to prioritize maintenance, manage operating
-pressures, and plan retrofits.
+Pipeline operators face constant risk from aging infrastructure, shifting soil, and uncertain environmental conditions. Predicting burst conditions is essential to prioritize maintenance, manage operating pressures, and plan retrofits.
 
-This project shows how a small engineering dataset can support a
-predictive system. This is a fully simulated dataset, not real-world
-sensors or SCADA. The advantage is that you can simulate failure, model
-it, and build an interactive decision tool for your engineers.
+This project shows how a small engineering dataset can support a predictive system. This is a fully simulated dataset, not real-world sensors or SCADA. The advantage is that you can simulate failure, model it, and build an interactive decision tool for your engineers.
 
-Pressure, temperature, and volume (PVT) metrics are commonly used for
-pipeline integrity. Internal pressure fluctuates with flow rates and
-pump operations. Temperature shifts from seasonal change or fluid
-composition can cause expansion or contraction in the pipe wall. Volume
-changes reflect the pipe's deformation and stress response. Together,
-these variables influence burst risk by altering the mechanical balance
-inside the pipeline. Monitoring and modeling these interactions helps
-operators anticipate failure before it occurs and adjust operations
-within safe bounds.
+Pressure, temperature, and volume (PVT) metrics are commonly used for pipeline integrity. Internal pressure fluctuates with flow rates and pump operations. Temperature shifts from seasonal change or fluid composition can cause expansion or contraction in the pipe wall. Volume changes reflect the pipe's deformation and stress response. Together, these variables influence burst risk by altering the mechanical balance inside the pipeline. Monitoring and modeling these interactions helps operators anticipate failure before it occurs and adjust operations within safe bounds.
 
 ### The Dataset
-The dataset was generated using OpenSees to simulate the physical
-behavior of a pipe under variable temperature and pressure conditions.
-Each row records the outcome of a pipe segment at a specific node during
-a simulation cycle.
+The dataset was generated using OpenSees to simulate the physical behavior of a pipe under variable temperature and pressure conditions. Each row records the outcome of a pipe segment at a specific node during a simulation cycle.
 
 **Key Columns**
 
 - `Temp`, `Prev Temp`: Environmental temperature conditions
-- `Soil Modulus`: Stiffness of the
-  surrounding soil
-- `Pressure at Node`: Internal
-  pressure
-- `Spring Stiffness`: Simulated support
-  from surroundings
-- `Displacement`,
-  `New Radius`,
-  `New Volume`: Pipe response
-- `Burst Occurred`: The binary
-  target
+- `Soil Modulus`: Stiffness of the surrounding soil
+- `Pressure at Node`: Internal pressure
+- `Spring Stiffness`: Simulated support from surroundings
+- `Displacement`, `New Radius`, `New Volume`: Pipe response
+- `Burst Occurred`: The binary target
 
-Each row captures a physical state. Aggregating across nodes gives a
-full view of a simulation cycle.
+Each row captures a physical state. Aggregating across nodes gives a full view of a simulation cycle.
 
 ### Analysis
 We followed a standard supervised learning pipeline.
 
 1.  [**Group by simulation run** and average values across nodes]
 2.  [**Create a clean feature matrix and target vector**]
-3.  [**Train three models**: Logistic Regression, Random Forest, and
-    Neural Network]
-4.  [**Visualize results** using confusion matrices, feature
-    importances, and decision boundaries]
-5.  [**Augment the dataset** synthetically to improve model
-    generalization]
+3.  [**Train three models**: Logistic Regression, Random Forest, and Neural Network]
+4.  [**Visualize results** using confusion matrices, feature importances, and decision boundaries]
+5.  [**Augment the dataset** synthetically to improve model generalization]
 
-This lets us turn sparse simulation data into a usable predictive
-system. All the data is simulated which leads to unrealistically
-pristine results.
+This lets us turn sparse simulation data into a usable predictive system. All the data is simulated which leads to unrealistically pristine results.
 
-All models predicted burst risk with strong accuracy. Pressure at Node
-and Displacement were the strongest predictors. The Neural Network and
-Random Forest gave near-identical performance, though the tree model was
-easier to interpret.
+All models predicted burst risk with strong accuracy. Pressure at Node and Displacement were the strongest predictors. The Neural Network and Random Forest gave near-identical performance, though the tree model was easier to interpret.
 
 
 Feature importance matches what we would expect.
 
 
-The decision boundary plot illustrates how the model separates burst
-from non-burst conditions.
+The decision boundary plot illustrates how the model separates burst from non-burst conditions.
 
 
 ### Wrap up
-This project shows how physics-based simulations can bootstrap
-predictive systems for infrastructure. With only simulated data, we
-trained reliable classifiers that predict burst failure. The next step
-is to connect this to real-time telemetry or build an interactive tool
-using Streamlit or Databricks.
+This project shows how physics-based simulations can bootstrap predictive systems for infrastructure. With only simulated data, we trained reliable classifiers that predict burst failure. The next step is to connect this to real-time telemetry or build an interactive tool using Streamlit or Databricks.
 
 Pipeline companies can use similar methods to:
 
@@ -223,10 +185,3 @@ plot_confusion_matrices(results)
 rf_importances = plot_feature_importance(results['Random Forest']['model'], X.columns)
 plot_decision_boundary(X, y, rf_importances, X.columns)
 ```
-::::::::By [Kyle Jones](https://medium.com/@kyle-t-jones) on
-[July 17, 2025](https://medium.com/p/6e0edc8a9caa).
-
-[Canonical
-link](https://medium.com/@kyle-t-jones/predicting-pipeline-burst-conditions-using-machine-learning-on-opensees-simulation-data-pvt-6e0edc8a9caa)
-
-Exported from [Medium](https://medium.com) on November 10, 2025.
