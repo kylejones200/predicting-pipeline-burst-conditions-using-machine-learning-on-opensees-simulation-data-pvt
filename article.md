@@ -23,7 +23,7 @@ Pressure, temperature, and volume (PVT) metrics are commonly used for pipeline i
 ### The Dataset
 The dataset was generated using OpenSees to simulate the physical behavior of a pipe under variable temperature and pressure conditions. Each row records the outcome of a pipe segment at a specific node during a simulation cycle.
 
-**Key Columns**
+Key Columns
 
 - `Temp`, `Prev Temp`: Environmental temperature conditions
 - `Soil Modulus`: Stiffness of the surrounding soil
@@ -37,11 +37,11 @@ Each row captures a physical state. Aggregating across nodes gives a full view o
 ### Analysis
 We followed a standard supervised learning pipeline.
 
-1.  [**Group by simulation run** and average values across nodes]
-2.  [**Create a clean feature matrix and target vector**]
-3.  [**Train three models**: Logistic Regression, Random Forest, and Neural Network]
-4.  [**Visualize results** using confusion matrices, feature importances, and decision boundaries]
-5.  [**Augment the dataset** synthetically to improve model generalization]
+1.  [Group by simulation run and average values across nodes]
+2.  [Create a clean feature matrix and target vector]
+3.  [Train three models: Logistic Regression, Random Forest, and Neural Network]
+4.  [Visualize results using confusion matrices, feature importances, and decision boundaries]
+5.  [Augment the dataset synthetically to improve model generalization]
 
 This lets us turn sparse simulation data into a usable predictive system. All the data is simulated which leads to unrealistically pristine results.
 
