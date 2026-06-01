@@ -11,14 +11,7 @@ Pipeline operators face constant risk from aging infrastructure, shifting soil, 
 
 This project shows how a small engineering dataset can support a predictive system. This is a fully simulated dataset, not real-world sensors or SCADA. The advantage is that you can simulate failure, model it, and build an interactive decision tool for your engineers.
 
-## About
 
-Place the code for this article in this repository.
-The original article export is saved as `article.md`.
-
-## Files
-
-Add your `.ipynb`, `.py`, `.yaml`, `.js`, `.ts`, or other project files here.
 
 ## Disclaimer
 
